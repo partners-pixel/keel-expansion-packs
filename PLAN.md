@@ -10,6 +10,13 @@ The rule for the whole plan: **broad in vision, modular in architecture, selecti
 
 **The idea.** Keel's kernel already runs any kind of work that has stages, items, program checks and owner approvals. Software is the first pack. Most digital products can be packs too, if a program can check their facts and a person approves their taste and anything that goes public.
 
+**The basic motive.** The person using the engine brings the knowledge of their field; the engine brings the way of working. Their field knowledge reaches Keel the way it does today: in the requirement and references (read-only to agents), in the planner's questions, in the decisions they type, and in project lessons. Three layers each bring one thing:
+- **The person:** what to make, why, the field's rules, and the decisions about money, law, risk and taste.
+- **A pack:** how to make one kind of output well, and how to check it.
+- **The kernel:** how to run any work safely.
+
+So Keel needs **few packs** (kinds of output) and serves **unlimited fields**. It does not need a universe of all knowledge before it is useful. High-stakes fields add a qualified person's review (G-EXPERT).
+
 **Recommendation.**
 
 | Order | Pack | Makes | Why here |
@@ -502,7 +509,9 @@ Each step starts only when the one before has passed its checks. The order after
 
 ### 8.1 What it is in Keel's terms
 
-A registry of **domains, capabilities, skills, tools, standards and workflows**, each with a stable id and explicit relations. A workflow is a pack or a work kind. As in Keel, the truth is schema-checked JSON and Markdown is a view: the views use `[[id]]` links, so an Obsidian vault shows the graph. The planner's future discover mode (E-16) reads it to answer: which capabilities does this goal need, which packs and tools exist for them, what must be checked, and which approvals or professional reviews apply.
+**Keel works without this registry.** The person using Keel supplies their field's knowledge (section 0, "the basic motive"). The registry only helps later, when a person does not know which packs, skills or tools their goal needs.
+
+It is a registry of **domains, capabilities, skills, tools, standards and workflows**, each with a stable id and explicit relations. A workflow is a pack or a work kind. As in Keel, the truth is schema-checked JSON and Markdown is a view: the views use `[[id]]` links, so an Obsidian vault shows the graph. The planner's future discover mode (E-16) reads it to answer: which capabilities does this goal need, which packs and tools exist for them, what must be checked, and which approvals or professional reviews apply.
 
 ### 8.2 Ids and relations
 

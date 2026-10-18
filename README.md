@@ -13,6 +13,20 @@ The engine itself is in the private repository `partners-pixel/keel-engine`. Thi
 
 ---
 
+## The basic idea
+
+**You bring the knowledge of your field. Keel brings the way of working.**
+
+Keel does not need to know accounting, teaching or marketing. The person using it says what to make and why, gives the references, and makes the decisions only a person should make. Keel turns that into a plan, does the work in small steps, checks every step with programs, and learns from every mistake.
+
+| Who | Brings | Example |
+|---|---|---|
+| The person using Keel | What to make and why, the rules of their field, references, and every decision about money, law, risk and taste | A shop owner describes how orders, stock and refunds work in their shop |
+| A pack | How to make one kind of thing well, and how to check it | The software pack knows how to plan, build, test and release an app |
+| The kernel | How to run any work safely: plans, approvals, evidence, records, lessons | The same for every pack |
+
+So Keel needs only **a few packs**, one per kind of output (software, written guides, graphics, videos), while the **fields** people use them in are unlimited. Where a field has high stakes, such as health, money, law or tax, the pack asks for a qualified person's review before anything goes out.
+
 ## What Keel is
 
 | Keel is | Keel is not |
