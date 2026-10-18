@@ -1,0 +1,73 @@
+{
+  "id": "pub-markdown",
+  "description": "A publication written in Markdown and built with pinned tools into a static site, EPUB and PDF. Each outside tool runs through a pack wrapper that prints TAP, so every step counts what it checked; nothing checked fails.",
+  "install": "npm ci --ignore-scripts",
+  "installWhen": "package-lock.json",
+  "testGlobs": [
+    "checks/**",
+    "**/*.check.mjs"
+  ],
+  "steps": [
+    {
+      "id": "build",
+      "cmd": "npm run build",
+      "agentCmd": "npm run build",
+      "parser": "exit",
+      "timeoutMs": 600000
+    },
+    {
+      "id": "structure",
+      "cmd": "node --test --test-reporter=spec --test-reporter-destination=stderr --test-reporter=\"{packDir}/reporters/keel-count.mjs\" --test-reporter-destination=stdout checks/",
+      "agentCmd": "node --test checks/",
+      "parser": "node-count",
+      "minTests": 1
+    },
+    {
+      "id": "claims",
+      "cmd": "node {packDir}/checks/claims.mjs --claims claims.json --sources sources.json --tap",
+      "parser": "tap",
+      "minTests": 1
+    },
+    {
+      "id": "rights",
+      "cmd": "node {packDir}/checks/rights.mjs --rights rights.json --build build --tap",
+      "parser": "tap",
+      "minTests": 1
+    },
+    {
+      "id": "prose",
+      "cmd": "node {packDir}/checks/vale.mjs --dir manuscript --tap",
+      "agentCmd": "vale manuscript",
+      "parser": "tap",
+      "minTests": 1
+    },
+    {
+      "id": "links",
+      "cmd": "node {packDir}/checks/lychee.mjs --dir build --offline --tap",
+      "parser": "tap",
+      "minTests": 1
+    },
+    {
+      "id": "personal-data",
+      "cmd": "node {packDir}/checks/personal-data.mjs --dir manuscript --tap",
+      "parser": "tap",
+      "minTests": 1
+    },
+    {
+      "id": "epub",
+      "cmd": "node {packDir}/checks/epubcheck.mjs --file build/book.epub --tap",
+      "parser": "tap",
+      "minTests": 1,
+      "heavy": true,
+      "probe": "epubcheck --version"
+    },
+    {
+      "id": "access",
+      "cmd": "node {packDir}/checks/ace.mjs --file build/book.epub --tap",
+      "parser": "tap",
+      "minTests": 1,
+      "heavy": true,
+      "probe": "ace --version"
+    }
+  ]
+}

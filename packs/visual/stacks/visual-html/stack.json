@@ -1,0 +1,16 @@
+{
+  "id": "visual-html",
+  "description": "Pieces written as HTML and SVG from shared tokens, rendered by a pinned headless browser into exact channel sizes (PNG, PDF). Each check prints TAP, so every step counts what it checked; nothing checked fails.",
+  "install": "npm ci --ignore-scripts",
+  "installWhen": "package-lock.json",
+  "testGlobs": ["checks/**", "**/*.check.mjs"],
+  "steps": [
+    { "id": "tokens", "cmd": "node {packDir}/checks/tokens.mjs --tokens brand/tokens.json --pieces pieces --tap", "parser": "tap", "minTests": 1 },
+    { "id": "render", "cmd": "node {packDir}/cli/render.mjs --specs specs.json --out out", "parser": "exit", "heavy": true, "probe": "node {packDir}/cli/render.mjs --probe", "timeoutMs": 900000 },
+    { "id": "specs", "cmd": "node {packDir}/checks/specs.mjs --specs specs.json --out out --tap", "parser": "tap", "minTests": 1, "heavy": true, "probe": "node {packDir}/cli/render.mjs --probe" },
+    { "id": "legibility", "cmd": "node {packDir}/checks/legibility.mjs --out out --tap", "parser": "tap", "minTests": 1, "heavy": true, "probe": "node {packDir}/cli/render.mjs --probe" },
+    { "id": "rights", "cmd": "node {packDir}/checks/rights.mjs --rights rights.json --pieces pieces --tap", "parser": "tap", "minTests": 1 },
+    { "id": "personal-data", "cmd": "node {packDir}/checks/personal-data.mjs --dir pieces --tap", "parser": "tap", "minTests": 1 },
+    { "id": "structure", "cmd": "node --test --test-reporter=spec --test-reporter-destination=stderr --test-reporter=\"{packDir}/reporters/keel-count.mjs\" --test-reporter-destination=stdout checks/", "agentCmd": "node --test checks/", "parser": "node-count", "minTests": 1 }
+  ]
+}
